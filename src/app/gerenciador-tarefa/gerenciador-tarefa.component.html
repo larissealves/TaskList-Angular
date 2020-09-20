@@ -1,0 +1,66 @@
+<style>
+
+input[type="checkbox"]{
+  position: relative;
+  opacity: 1;
+  pointer-events: painted;
+}
+
+li {
+    padding-top: 8px;
+}
+</style>
+
+<h1>Todo List</h1>
+
+
+  <div class="row">
+    <div class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+         <form #cadastro="ngForm" (submit)="salvar()">
+          <input type="text" id="descricao" name="descricao" [(ngModel)]="descricao" required> 
+          <label for="descricao"> </label>
+          <button type="submit" class="btn waves-effect waves-light" [disabled]="!cadastro.valid">
+            Submit   
+         </button>
+         <button class="btn waves-effect waves-light" type="reset" (click)="cancelar()">
+            Reset   
+         </button>
+         </form>
+   </div>
+      </div>
+</div></div>
+       
+ <div class="row">
+ <div class="col s6">
+  <h2>ToDo </h2>
+   
+    <ul id="pendentes">
+      <li *ngFor="let item of abertas;">
+        <input type="checkbox" name="checkbox" (change)="concluir(item)">
+          {{ item.descricao }} 
+        <button type="button" type="submit" class="btn waves-effect waves-light"(click)="excluir(item)">
+          Delete 
+        </button > 
+        <button type="button" type="submit" class="btn waves-effect waves-light" (click)="editar(item)">
+          Edit
+        </button>
+      </li>
+    </ul>
+</div>
+
+ <div class="col s6">
+
+  <h2> DONE </h2>
+ 
+    <ul id="completas">
+      <li *ngFor="let item of concluidas;">
+        <input type="checkbox" name="checkbox" checked >
+          {{ item.descricao }} 
+        <button type="button" type="submit" class="btn waves-effect waves-light"(click)="excluirConcluidas(item)">
+          Excluir
+        </button>
+      </li>
+    </ul>
+    </div>
